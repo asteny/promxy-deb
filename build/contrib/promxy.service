@@ -1,0 +1,21 @@
+[Unit]
+Description=An aggregating proxy to enable HA prometheus
+Documentation=https://github.com/jacksontj/promxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=promxy
+Group=promxy
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+StartLimitBurst=99999
+EnvironmentFile=-/etc/default/promxy
+ExecStart=/usr/bin/promxy $CMD_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

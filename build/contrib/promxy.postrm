@@ -1,0 +1,35 @@
+#!/bin/bash
+
+USER="promxy"
+GROUP="promxy"
+DESC="An aggregating proxy to enable HA prometheus"
+
+
+case "$1" in
+  remove)
+    /bin/systemctl stop promxy
+  ;;
+
+  upgrade)
+    /bin/systemctl restart promxy
+  ;;
+
+  purge)
+    /usr/sbin/deluser ${USER}
+    /usr/sbin/delgroup ${GROUP}
+    /bin/rm -fr /etc/default/promxy /etc/promxy
+  ;;
+
+  remove|failed-upgrade|abort-install|abort-upgrade|disappear)
+    /bin/systemctl restart promxy
+    exit 0
+  ;;
+
+  *)
+    echo "postrm called with unknown argument \`$1'" >&2
+    exit 1
+  ;;
+
+esac
+
+exit 0

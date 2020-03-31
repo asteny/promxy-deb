@@ -1,0 +1,27 @@
+#!/bin/bash
+
+USER="promxy"
+GROUP="promxy"
+DESC="An aggregating proxy to enable HA prometheus"
+
+
+case "$1" in
+  configure)
+
+    # create group
+    if ! getent group ${GROUP} >/dev/null; then
+       /usr/sbin/addgroup --quiet --system ${GROUP}
+    fi
+
+    # create colord user if it isn't already there
+    if ! getent passwd ${USER} >/dev/null; then
+       /usr/sbin/adduser --system --ingroup ${GROUP} --gecos "${DESC} --disabled-login ${USER}"
+    fi
+  ;;
+esac
+
+
+/bin/systemctl daemon-reload
+
+exit 0
+

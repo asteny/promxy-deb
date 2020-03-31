@@ -1,0 +1,2 @@
+CMD_OPTS="--config.file=/etc/promxy/promxy.yaml --bind-addr=:8082 --log-level=info"
+GOMAXPROCS=4
