@@ -21,3 +21,4 @@ build: download
 
 download:
 	cd /tmp && curl -Lo promxy https://github.com/jacksontj/promxy/releases/download/v$(VERSION)/promxy-v$(VERSION)-linux-amd64
+	cd /tmp && chmod +x promxy
