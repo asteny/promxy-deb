@@ -15,7 +15,7 @@ case "$1" in
 
     # create colord user if it isn't already there
     if ! getent passwd ${USER} >/dev/null; then
-       /usr/sbin/adduser --system --ingroup ${GROUP} --gecos "${DESC} --disabled-login ${USER}"
+       /usr/sbin/adduser --system --ingroup ${GROUP} --gecos "${DESC}" --no-create-home --disabled-login ${USER}
     fi
   ;;
 esac
