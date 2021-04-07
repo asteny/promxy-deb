@@ -1,10 +1,6 @@
-VERSION = 0.0.61
-ITERATION = 0
-UID ?= 0
-
 all: build
 
-build: download
+build: compress
 	chmod -Rv 644 build/contrib/
 	fpm -s dir -f -t deb \
 		-n promxy \
@@ -18,6 +14,9 @@ build: download
 		build/contrib/promxy.preset=/usr/lib/systemd/system-preset/promxy.preset \
 		build/contrib/config.yml=/etc/promxy/promxy.yml \
         /tmp/promxy=/usr/bin/promxy
+
+compress: download
+	upx /tmp/promxy
 
 download:
 	cd /tmp && curl -Lo promxy https://github.com/jacksontj/promxy/releases/download/v$(VERSION)/promxy-v$(VERSION)-linux-amd64
