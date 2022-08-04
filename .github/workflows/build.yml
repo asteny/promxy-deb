@@ -40,3 +40,4 @@ jobs:
           package_cloud push the_asten/prometheus/ubuntu/xenial build/packages/promxy_${VERSION}-${ITERATION}_amd64.deb --skip-errors
           package_cloud push the_asten/prometheus/ubuntu/bionic build/packages/promxy_${VERSION}-${ITERATION}_amd64.deb --skip-errors
           package_cloud push the_asten/prometheus/ubuntu/focal build/packages/promxy_${VERSION}-${ITERATION}_amd64.deb --skip-errors
+          package_cloud push the_asten/prometheus/ubuntu/jammy build/packages/promxy_${VERSION}-${ITERATION}_amd64.deb --skip-errors
